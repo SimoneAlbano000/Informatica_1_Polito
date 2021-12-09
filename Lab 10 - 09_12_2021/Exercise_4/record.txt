@@ -1,0 +1,5 @@
+Luca;cena;25;19:20:17
+Mario;pranzo;30;12:21:23
+Fralippa;idraulico;70;23:12:56
+PopiPopi;alloggio;45;14:45:21
+Federico;pranzo;23;13:50:43
