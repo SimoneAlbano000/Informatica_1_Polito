@@ -11,7 +11,9 @@ alphabeth = lower_alphabeth + upper_alphabeth
 
 def generate_key(salt: str):
     reversed_alphabeth = list(reversed(alphabeth))
-    salt = str(salt)
+
+    # The set function is used to create a new string with duplicates removed
+    salt = set(salt)
     key = []
 
     for i in salt:
@@ -40,7 +42,7 @@ def encrypt(text: str, key: list):
     return buffer
 
 def decrypt(encrypted_text: str, key: str):
-    encrypted_text = str(encrypted_text)
+    encrypted_text = str(encrypted_text[1:])
     key = list(key)
     buffer = ""
 
@@ -49,7 +51,7 @@ def decrypt(encrypted_text: str, key: str):
             buffer += alphabeth[key.index(val)]
         else:
             buffer += val
-    return buffer[1:]
+    return buffer
 
 def main():
     try:
