@@ -19,32 +19,31 @@ def generate_key(salt: str):
     return key
 
 def check_encrypt_decrypt(cypher: str):
-    try:
-        api_file = open("api_file.txt", "w")
-        for line in api_file:
-            if line[0] == "#":
-                yield "decrypt"
-            else:
-                yield "encrypt"
-    except:
-        print("File error... ")
-    finally:
-        api_file.close()
+    for line in api_file:
+        if line[0] == "#":
+            return "decrypt"
+        else:
+            return "encrypt"
 
-def encrypt(text: str):
-    pass
+def encrypt(text: str, key: str):
+    text = str(text)
+    key = str(key)
+    buffer = "#"
+    for i in text:
+        buffer.join(key[text.index(i)]) 
+    return buffer
 
-def decrypt(encrypted_text: str):
+def decrypt(encrypted_text: str, key: str):
     pass
 
 with open("api_file.txt", "w") as api_file:
     key = generate_key(salt)
 
-    for i, line in enumerate(api_file):
+    for line in api_file:
         if check_encrypt_decrypt() == "encrypt":
-            encrypted_line = encrypt(line)
-            api_file.write(f"Line {i} is being encrypted: #{encrypted_line}")
+            encrypted_line = encrypt(line, key)
+            api_file.write(f"Line \"{line}\" is being encrypted: {encrypted_line}")
         elif check_encrypt_decrypt() == "decrypt":
-            decrypted_line = decrypt(line)
-            api_file.write(f"Line {i} is being decrypted: {encrypted_line}")
-
+            decrypted_line = decrypt(line, key)
+            api_file.write(f"Line \"{line}\" is being decrypted: {encrypted_line}")
+api_file.close()
