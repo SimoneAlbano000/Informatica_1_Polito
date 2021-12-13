@@ -5,7 +5,9 @@ import sys
 salt = "raffinato"
 
 # Generate a list with all the alphabet digits
-alphabeth = [chr(i) for i in range(97, 123)]
+lower_alphabeth = [chr(i) for i in range(97, 123)]
+upper_alphabeth = [chr(i) for i in range(65, 91)]
+alphabeth = lower_alphabeth + upper_alphabeth
 
 def generate_key(salt: str):
     reversed_alphabeth = list(reversed(alphabeth))
@@ -71,6 +73,6 @@ def main():
         api_file.write(stream)
     finally:
         api_file.close() 
-    return 0
+    return None
 
 main()
